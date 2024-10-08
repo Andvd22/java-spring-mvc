@@ -5,6 +5,6 @@
         <title>Document</title>
     </head>
     <body>
-        hello from view html
+        hello from jsp
     </body>
 </html>
