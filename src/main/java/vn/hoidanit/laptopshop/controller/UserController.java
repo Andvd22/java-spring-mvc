@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.UserRepository;
 import vn.hoidanit.laptopshop.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class UserController {
@@ -43,7 +45,27 @@ public class UserController {
     public String getUserDetailPage(Model model, @PathVariable long id) {
         System.out.println("check path id = " + id);
         model.addAttribute("id", id);
+        model.addAttribute("user", this.userService.getUserById(id));
         return "admin/user/show";// link jsp
+    }
+
+    @RequestMapping("/admin/user/update/{id}")
+    public String getUserUpdatePage(Model model, @PathVariable long id) {
+        User currentUser = this.userService.getUserById(id);
+        model.addAttribute("newUser", currentUser);
+        return "admin/user/update";// link jsp
+    }
+
+    @PostMapping("/admin/user/update")
+    public String getUserUpdatePage(Model model, @ModelAttribute("newUser") User dovanan) {
+        User currentUser = this.userService.getUserById(dovanan.getId());
+        if (currentUser != null) {
+            currentUser.setAddress(dovanan.getAddress());
+            currentUser.setFullName(dovanan.getFullName());
+            currentUser.setPhone(dovanan.getPhone());
+            this.userService.handelSaveUser(currentUser);
+        }
+        return "redirect:/admin/user";
     }
 
     @RequestMapping("/admin/user/create") // link tren thanh url
