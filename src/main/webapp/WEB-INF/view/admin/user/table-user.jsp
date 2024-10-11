@@ -42,7 +42,7 @@
                                 <td>${user.email}</td>
                                 <td>${user.fullName}</td>
                                 <td>
-                                    <button class="btn btn btn-success">View</button>
+                                    <a href="/admin/user/${user.id}" class="btn btn btn-success">View</a>
                                     <button class="btn btn btn-warning">Update</button>
                                     <button class="btn btn btn-danger">Delete</button>
                                 </td>
