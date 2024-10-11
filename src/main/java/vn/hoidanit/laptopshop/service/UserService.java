@@ -27,6 +27,10 @@ public class UserService {
         return this.userRepository.findById(id);
     }
 
+    public void deleteAUser(long id) {
+        this.userRepository.deleteById(id);
+    }
+
     public User handelSaveUser(User user) {
         User anric = this.userRepository.save(user);
         System.out.println(anric);

@@ -3,6 +3,7 @@ package vn.hoidanit.laptopshop.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,6 +50,7 @@ public class UserController {
         return "admin/user/show";// link jsp
     }
 
+    // update
     @RequestMapping("/admin/user/update/{id}")
     public String getUserUpdatePage(Model model, @PathVariable long id) {
         User currentUser = this.userService.getUserById(id);
@@ -57,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String getUserUpdatePage(Model model, @ModelAttribute("newUser") User dovanan) {
+    public String getUserUpdate(Model model, @ModelAttribute("newUser") User dovanan) {
         User currentUser = this.userService.getUserById(dovanan.getId());
         if (currentUser != null) {
             currentUser.setAddress(dovanan.getAddress());
@@ -68,6 +70,7 @@ public class UserController {
         return "redirect:/admin/user";
     }
 
+    // create
     @RequestMapping("/admin/user/create") // link tren thanh url
     public String createUserPage(Model model) {
         model.addAttribute("newUser", new User());
@@ -79,6 +82,24 @@ public class UserController {
         // System.out.println("run here" + dovanan);
         this.userService.handelSaveUser(dovanan);
         return "redirect:/admin/user";// redirect ve link url
+    }
+
+    // delete
+    @GetMapping("/admin/user/delete/{id}")
+    public String getUserDeletePage(Model model, @PathVariable long id) {
+        model.addAttribute("newUser", new User());
+        // User user = new User();
+        // user.setId(id);
+        // model.addAttribute("newUser", user);
+        model.addAttribute("id", id);
+        return "admin/user/delete";// link jsp
+    }
+
+    @PostMapping("/admin/user/delete")
+    public String getDeleteUser(Model model, @ModelAttribute("newUser") User dovanan) {
+        System.out.println("run hereeeeeee");
+        this.userService.deleteAUser(dovanan.getId());
+        return "redirect:/admin/user";
     }
 
 }
