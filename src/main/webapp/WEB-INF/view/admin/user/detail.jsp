@@ -30,35 +30,25 @@
                     </ol>
                     <div class="container mt-5">
                       <div class="row">
-                          <div class="col-md-6 col-12 mx-auto">
-                              <h3>Update a user</h3>
+                          <div class="col-12 mx-auto">
+                              <h3>User detail id = ${id}</h3>
                               <hr />
-                              <form:form method="post" action="/admin/user/update" modelAttribute="newUser">
-                                  <div class="mb-3" style="display: none;">
-                                    <label class="form-label">Id:</label>
-                                    <form:input type="text" class="form-control" path="id"/>
+                              <div class="card" style="width: 60%;">
+                                  <div class="card-header">
+                                    User information
                                   </div>
-                                  <div class="mb-3">
-                                    <label class="form-label">Email:</label>
-                                    <form:input type="email" class="form-control" path="email" disabled="true"/> 
-                                  </div>
-                                  <div class="mb-3">
-                                      <label class="form-label">Phone number:</label>
-                                      <form:input type="text" class="form-control" path="phone"/>
-                                  </div>
-                                    <div class="mb-3">
-                                      <label class="form-label">Full name:</label>
-                                      <form:input type="text" class="form-control" path="fullName"/>
-                                  </div>
-                                  <div class="mb-3">
-                                      <label class="form-label">Address:</label>
-                                      <form:input type="text" class="form-control" path="address"/>
-                                  </div>
-                                  <button type="submit" class="btn btn-warning">Update</button>
-                              </form:form>
+                                  <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">ID: ${id}</li>
+                                    <li class="list-group-item">Email: ${user.email}</li>
+                                    <li class="list-group-item">Fullname: ${user.fullName}</li>
+                                    <li class="list-group-item">Address: ${user.address}</li>
+                                  </ul>
+                              </div>
+                              <a href="/admin/user" class="btn btn-success mt-3">Back</a>  
                           </div>
                       </div>
                     </div>
+              
                 </div>
             </main>
             <jsp:include page="../layout/footer.jsp"/>
