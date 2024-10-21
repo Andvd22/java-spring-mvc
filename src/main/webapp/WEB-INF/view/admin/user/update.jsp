@@ -46,9 +46,13 @@
                                       <label class="form-label">Phone number:</label>
                                       <form:input type="text" class="form-control" path="phone"/>
                                   </div>
-                                    <div class="mb-3">
+                                  <div class="mb-3">
                                       <label class="form-label">Full name:</label>
                                       <form:input type="text" class="form-control" path="fullName"/>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label class="form-label">Role:</label>
+                                    <form:input type="text" class="form-control" path="role"/>
                                   </div>
                                   <div class="mb-3">
                                       <label class="form-label">Address:</label>
