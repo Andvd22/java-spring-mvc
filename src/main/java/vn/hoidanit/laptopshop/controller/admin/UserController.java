@@ -9,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 
 import jakarta.servlet.ServletContext;
+import jakarta.validation.Valid;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.UserRepository;
 import vn.hoidanit.laptopshop.service.UploadService;
@@ -86,9 +89,16 @@ public class UserController {
 
     @PostMapping(value = "/admin/user/create")
     public String createUserPage(Model model,
-            @ModelAttribute("newUser") User dovanan,
+            @ModelAttribute("newUser") @Valid User dovanan,
+            BindingResult bindingResult,
             @RequestParam("hoidanitFile") MultipartFile file) {
 
+        // validate
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors) {
+            System.out.println(error.getObjectName() + " - " + error.getDefaultMessage() + "khong thay a hahahaah");
+        }
+        // neu hop le
         String avatar = this.uploadService.handelSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(dovanan.getPassword());
 
