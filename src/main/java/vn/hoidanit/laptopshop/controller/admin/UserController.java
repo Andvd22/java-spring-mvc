@@ -69,7 +69,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String getUserUpdate(Model model, @ModelAttribute("newUser") User dovanan) {
+    public String handleUserUpdate(Model model, @ModelAttribute("newUser") User dovanan) {
         User currentUser = this.userService.getUserById(dovanan.getId());
         if (currentUser != null) {
             currentUser.setAddress(dovanan.getAddress());
@@ -82,13 +82,13 @@ public class UserController {
 
     // create
     @GetMapping("/admin/user/create") // link tren thanh url
-    public String createUserPage(Model model) {
+    public String getCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";// link jsp
     }
 
     @PostMapping(value = "/admin/user/create")
-    public String createUserPage(Model model,
+    public String handleCreateUser(Model model,
             @ModelAttribute("newUser") @Valid User dovanan,
             BindingResult newUserbindingResult,
             @RequestParam("hoidanitFile") MultipartFile file) {
@@ -126,7 +126,7 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/delete")
-    public String getDeleteUser(Model model, @ModelAttribute("newUser") User dovanan) {
+    public String handleDeleteUser(Model model, @ModelAttribute("newUser") User dovanan) {
         System.out.println("run hereeeeeee");
         this.userService.deleteAUser(dovanan.getId());
         return "redirect:/admin/user";
