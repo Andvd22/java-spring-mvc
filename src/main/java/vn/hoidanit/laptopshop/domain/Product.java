@@ -2,6 +2,7 @@ package vn.hoidanit.laptopshop.domain;
 
 import org.hibernate.mapping.ManyToOne;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,14 +26,15 @@ public class Product {
     @NotNull
     @NotEmpty(message = "Tên sản phẩm không được để trống")
     private String name;
-    
+
     @NotNull
-    @DecimalMin(value = "0",inclusive = false, message = "Price phải lớn hơn 0")
+    @DecimalMin(value = "0", inclusive = false, message = "Price phải lớn hơn 0")
     private double price;
-    
+
     private String image;
     @NotNull
-    @NotEmpty( message = "detailDesc không được để trống")
+    @NotEmpty(message = "detailDesc không được để trống")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
     @NotNull
     @NotEmpty(message = "shortDesc không được để trống")
@@ -40,6 +42,7 @@ public class Product {
     @NotNull
     @Min(value = 1, message = "quantity phải lớn hơn hoặc bằng 1")
     private long quantity;
+    @NotNull
     private long sold;
     private String factory;
     private String target;

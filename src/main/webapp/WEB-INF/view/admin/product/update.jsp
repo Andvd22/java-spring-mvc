@@ -19,6 +19,13 @@
                    <script>
                        $(document).ready(() => {
                            const productFile = $("#productFile");
+                           const orgImage = "${newProduct.image}";
+                            if(orgImage){
+                                const urlImage = "/images/product/"+orgImage;
+                                $("#imgProductPreview").attr("src", urlImage);
+                               $("#imgProductPreview").css({ "display": "block" });
+                            }
+
                            productFile.change(function (e) {
                                const imgURL = URL.createObjectURL(e.target.files[0]);
                                $("#imgProductPreview").attr("src", imgURL);
@@ -36,17 +43,23 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Manage Users</h1>
+                    <h1 class="mt-4">Manage products</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Users</li>
+                        <li class="breadcrumb-item active">Products</li>
                     </ol>
                     <div class="container mt-5">
                       <div class="row">
                           <div class="col-md-6 col-12 mx-auto">
-                              <h3>Create a product</h3>
+                              <h3>Update a product</h3>
                               <hr />
-                              <form:form method="post" action="/admin/product/create" modelAttribute="newProduct" class="row" enctype="multipart/form-data">
+                              <form:form method="post" action="/admin/product/update" modelAttribute="newProduct" class="row" enctype="multipart/form-data">
+
+                              <div class="mb-3" style="display: none;">
+                                <label class="form-label">Id:</label>
+                                <form:input type="text" class="form-control" path="id" />
+                            </div>
+
 
                                     <div class="mb-3 col-12 col-md-6">
                                       <c:set var="errorName">
@@ -119,7 +132,7 @@
                                   <div class="col-12 mb-3">
                                     <img style="max-height: 250px; display: none;" alt="imgProduct preview" id="imgProductPreview">
                                   </div>
-                                  <div class="col-12 mb-5"><button type="submit" class="btn btn-primary">Create</button></div>
+                                  <div class="col-12 mb-5"><button type="submit" class="btn btn-warning">Update</button></div>
                               </form:form>
                           </div>
                       </div>
