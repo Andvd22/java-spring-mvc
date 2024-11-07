@@ -50,9 +50,14 @@ public class HomePageController {
     @PostMapping("/register")
     public String handleRegister(@ModelAttribute("registerUser") @Valid RegisterDTO registerDTO,
             BindingResult bindingResult) {
+        // neu co loi tra ve terminal
         List<FieldError> errors = bindingResult.getFieldErrors();
         for (FieldError error : errors) {
             System.out.println(error.getField() + " - " + error.getDefaultMessage());
+        }
+        // neu co loi tra ve view
+        if (bindingResult.hasErrors()) {
+            return "/client/auth/register";
         }
         User user = this.userService.registerDTOtoUser(registerDTO);
         String hashPassword = this.passwordEncoder.encode(user.getPassword());
