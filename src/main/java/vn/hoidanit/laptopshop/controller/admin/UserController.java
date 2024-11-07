@@ -108,7 +108,7 @@ public class UserController {
 
         dovanan.setAvatar(avatar);
         dovanan.setPassword(hashPassword);
-        dovanan.setRole(this.userService.getRoleByName(dovanan.getRole().getName()));
+        dovanan.setRole(this.userService.getRoleByName(dovanan.getRole().getName()));// lay id ???
         // System.out.println("run here" + dovanan);
         this.userService.handelSaveUser(dovanan);
         return "redirect:/admin/user";// redirect ve link url
