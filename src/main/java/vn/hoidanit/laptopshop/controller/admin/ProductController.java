@@ -59,7 +59,7 @@ public class ProductController {
         }
 
         if (newProductbindingResult.hasErrors()) {
-            return "/admin/product/create";
+            return "admin/product/create";
         }
         // neu hop le
         String product = this.uploadService.handelSaveUploadFile(file, "product");
