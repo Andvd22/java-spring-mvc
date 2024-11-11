@@ -20,7 +20,6 @@
     </head>
     <body>
         <h1>${anric}</h1>
-        <h2>${hoidanit}</h2>
         <button class="btn btn-warning">Submit</button>
     </body>
 </html>
